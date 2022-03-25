@@ -1,0 +1,25 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+<h1 class="mb-3">Edit {{ book.title }}</h1>
+<form action="/books/{{ book.book_id }}" method="post">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" name="title" id="title" class="form-control" autocomplete="off" required value="{{ book.title }}" disabled>
+  </div>
+  <div class="mb-3">
+    <label for="author" class="form-label">Author</label>
+    <input type="text" name="author" id="author" class="form-control" autocomplete="off" required value="{{ book.author }}">
+  </div>
+  <div class="mb-3">
+    <label for="rating" class="form-label">Rating</label>
+    <select name="rating" id="rating" class="form-select" required>
+      <option value="" disabled>Select a rating</option>
+      {% for num in range(1, 6) %}
+      <option value="{{ num }}" {% if book.rating == num %}selected{% endif %}>{{ num }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

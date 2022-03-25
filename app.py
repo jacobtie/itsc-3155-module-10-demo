@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 
-from models import Book, db
+from blueprints.book_blueprint import router as book_router
+from models import db
 
 app = Flask(__name__)
 
@@ -16,7 +17,4 @@ def index():
     return render_template('index.html')
 
 
-@app.get('/books')
-def get_all_books():
-    all_books = Book.query.all()
-    return render_template('all_books.html', books=all_books)
+app.register_blueprint(book_router)

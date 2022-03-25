@@ -1,0 +1,10 @@
+{% extends '_layout.html' %}
+
+{% block body %}
+<h1 class="mb-3">{{ book.title }} by {{ book.author }}</h1>
+<p>Rated {{ book.rating }}</p>
+<a href="/books/{{ book.book_id }}/edit">Edit</a>
+<form action="/books/{{ book.book_id }}/delete" method="post">
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% endblock %}
